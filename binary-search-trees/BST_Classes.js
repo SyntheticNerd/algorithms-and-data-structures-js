@@ -40,15 +40,15 @@ class BinarySearchTree {
         current = null;
       } else if (current.value === value) {
         found = true;
-      } else if (current.value < value) {
-        if (current.right !== null) {
-          current = current.right;
+      } else if (value < current.value) {
+        if (current.left !== null) {
+          current = current.left;
         } else {
           current = null;
         }
-      } else if (current.value > value) {
-        if (current.left !== null) {
-          current = current.left;
+      } else if (value > current.value) {
+        if (current.right !== null) {
+          current = current.right;
         } else {
           current = null;
         }
@@ -56,9 +56,43 @@ class BinarySearchTree {
         current = null;
       }
     }
-    return found;
+    if (found) {
+      return current;
+    } else {
+      return undefined;
+    }
   };
-  deleteAll = () => {};
+  deleteAll = () => {
+    let current = this.root;
+    let error = false;
+    const stack = [];
+    while (current !== null && !error) {
+      if (current.left !== null) {
+        stack.push(current);
+        current = current.left;
+      } else if (current.right !== null) {
+        stack.push(current);
+        current = current.right;
+      } else if (current.left === null && current.right === null) {
+        console.log("Delete", current.value);
+        if (stack.length > 0) {
+          if (current.value < stack[stack.length - 1].value) {
+            current = stack.pop();
+            current.left = null;
+          } else if (current.value > stack[stack.length - 1].value) {
+            current = stack.pop();
+            current.right = null;
+          } else {
+            error = true;
+          }
+        } else {
+          console.log("everything is deleted");
+          current = null;
+          this.root = current;
+        }
+      }
+    }
+  };
 }
 
 var tree = new BinarySearchTree();
@@ -71,7 +105,11 @@ tree.insert(8);
 tree.insert(11);
 tree.insert(10);
 
+console.log(tree.search(10));
 console.log(tree.search(50));
+// console.log(tree);
+tree.deleteAll();
+console.log(tree);
 
 //!Recursive search method
 //search = (value, parent = this.root) => {
