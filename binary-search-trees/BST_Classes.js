@@ -65,9 +65,8 @@ class BinarySearchTree {
 
   deleteAll = () => {
     let current = this.root;
-    let error = false;
     const stack = [];
-    while (current !== null && !error) {
+    while (current !== null) {
       if (current.left !== null) {
         stack.push(current);
         current = current.left;
