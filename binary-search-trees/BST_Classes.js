@@ -62,6 +62,7 @@ class BinarySearchTree {
       return undefined;
     }
   };
+
   deleteAll = () => {
     let current = this.root;
     let error = false;
@@ -73,19 +74,18 @@ class BinarySearchTree {
       } else if (current.right !== null) {
         stack.push(current);
         current = current.right;
-      } else if (current.left === null && current.right === null) {
+      } else {
         console.log("Delete", current.value);
         if (stack.length > 0) {
           if (current.value < stack[stack.length - 1].value) {
             current = stack.pop();
             current.left = null;
-          } else if (current.value > stack[stack.length - 1].value) {
+          } else {
             current = stack.pop();
             current.right = null;
-          } else {
-            error = true;
           }
         } else {
+          console.log("stack", stack);
           console.log("everything is deleted");
           current = null;
           this.root = current;

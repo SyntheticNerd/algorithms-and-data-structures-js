@@ -40,4 +40,9 @@ Binary Search trees are sorted binary trees
       - If there is move to that node and repeat these steps
       - if there is not we're done searching
 
+### Delete All
+
+- starting at the root
+  - check if there is a root, if not 
+
 Tail recursive function
