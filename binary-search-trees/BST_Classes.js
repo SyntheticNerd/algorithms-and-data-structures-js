@@ -5,7 +5,7 @@ class Node {
     this.right = null;
   }
 }
-
+//! Its better to not use recursion in JS
 class BinarySearchTree {
   constructor() {
     this.root = null;
@@ -31,46 +31,75 @@ class BinarySearchTree {
       console.log("HOW'D YOU GET HERE");
     }
   };
-  search = (value, parent = this.root) => {
-    //? I cant decide if I like having the second parameter as the parent
-    //? I do it because I am trying to call the method recursively
-    //? I could use a while loop, not sure which is better
 
-    if (parent.value === null) {
-      return false;
-    } else if (parent.value === value) {
-      return true;
-    } else if (parent.value < value) {
-      if (parent.right !== null) {
-        //don't forget to return this search
-        //if you don't you will get undefined we need the return to cascade
-        return this.search(value, parent.right);
+  search = (value) => {
+    let current = this.root;
+    let found = false;
+    while (current !== null && !found) {
+      if (current.value === null) {
+        current = null;
+      } else if (current.value === value) {
+        found = true;
+      } else if (current.value < value) {
+        if (current.right !== null) {
+          current = current.right;
+        } else {
+          current = null;
+        }
+      } else if (current.value > value) {
+        if (current.left !== null) {
+          current = current.left;
+        } else {
+          current = null;
+        }
       } else {
-        return false;
+        current = null;
       }
-    } else if (parent.value > value) {
-      if (parent.left !== null) {
-        return this.search(value, parent.left);
-      } else {
-        return false;
-      }
-    } else {
-      return false;
     }
+    return found;
   };
+  deleteAll = () => {};
 }
 
 var tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree.root.right = new Node(15);
-tree.root.left = new Node(7);
-tree.root.left.right = new Node(9);
 
-tree.insert(20);
-tree.insert(20);
-tree.insert(1);
+tree.insert(6);
+tree.insert(4);
+tree.insert(2);
+tree.insert(5);
+tree.insert(8);
+tree.insert(11);
+tree.insert(10);
 
-console.log(tree.search(10));
-console.log(tree.search(80));
-console.log(tree.search(20));
+console.log(tree.search(50));
+
+//!Recursive search method
+//search = (value, parent = this.root) => {
+//    //? I cant decide if I like having the second parameter as the parent
+//    //? I do it because I am trying to call the method recursively
+//    //? I could use a while loop, not sure which is better
+//
+//    if (parent.value === null) {
+//      return false;
+//    } else if (parent.value === value) {
+//      return true;
+//    } else if (parent.value < value) {
+//      if (parent.right !== null) {
+//        //don't forget to return this search
+//        //if you don't you will get undefined we need the return to cascade
+//        return this.search(value, parent.right);
+//      } else {
+//        return false;
+//      }
+//    } else if (parent.value > value) {
+//      if (parent.left !== null) {
+//        return this.search(value, parent.left);
+//      } else {
+//        return false;
+//      }
+//    } else {
+//      return false;
+//    }
+//  };
+
 // We will add a method called insert that will figure out where it goes for us

@@ -39,3 +39,5 @@ Binary Search trees are sorted binary trees
     - Check to see if there is a node to the left
       - If there is move to that node and repeat these steps
       - if there is not we're done searching
+
+Tail recursive function
