@@ -139,4 +139,3 @@ console.log(tree);
 //    }
 //  };
 
-// We will add a method called insert that will figure out where it goes for us

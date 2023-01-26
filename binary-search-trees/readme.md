@@ -61,4 +61,6 @@ Binary Search trees are sorted binary trees - every parent node has at most two 
               - set the current node to the last in the stack and remove it from the stack
               - set current.right to null repeat from beginning
 
+Not sure if deleting everything non-recursively is better for memory when using Java Script or not
+
 Tail recursive function
