@@ -40,9 +40,23 @@ Binary Search trees are sorted binary trees
       - If there is move to that node and repeat these steps
       - if there is not we're done searching
 
-### Delete All
+### Delete All Non-Recursively
 
-- starting at the root
-  - check if there is a root, if not 
+- create a stack
+- track current node
+- starting at the root check if there is a root,
+  - if not we are done
+  - if there is a root
+    - check if there is a left
+      - If there is, push the current node on the stack and move current to the left repeat from beginning
+    - If not left check if there is a node to the right
+      - If there is push the current node on the stack and move current to the right repeat from beginning
+    - If there is no right and no left
+      - check if the stack has a length
+        - if it doesn't we are at the root, set the root to null
+        - if it does
+          - check if the current node is greater or less than the last item on the stack
+            - if greater set the current node to the last in the stack and remove it from the stack and set the current.left to null
+            - if less set the current node to the last in the stack and remove it from the stack and set current.right to null
 
 Tail recursive function
