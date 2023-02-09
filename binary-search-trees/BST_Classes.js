@@ -77,6 +77,7 @@ class BinarySearchTree {
         console.log("Delete", current.value);
         if (stack.length > 0) {
           if (current.value < stack[stack.length - 1].value) {
+            //If i made a proper stack a peak method would come in handy here
             current = stack.pop();
             current.left = null;
           } else {
